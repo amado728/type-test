@@ -1,14 +1,19 @@
 import React from "react";
 import styled from "styled-components";
 
-export default class TypeBar extends React.Component {
-  handleInputChange() {
-    //do something
-  }
+export default function TypeBar(props: any) {
+  const handleInputChange = (e: any): void => {
+    props.handleInputChange(e);
+  };
 
-  render() {
-    return <StyledInput type="text" onChange={this.handleInputChange} />;
-  }
+  return (
+    <StyledInput
+      type="text"
+      onChange={(e) => {
+        handleInputChange(e.target.value);
+      }}
+    />
+  );
 }
 
 const StyledInput = styled.input`

@@ -5,15 +5,41 @@ import RestartButton from "./components/RestartButton";
 import Timer from "./components/Timer";
 import TypeBar from "./components/TypeBar";
 import TypeBox from "./components/TypeBox";
+import WordBank from "./models/WordBank";
+import shuffleArray from "./operations/shuffleArray";
 
 function App() {
   const [CPM, setCPM] = useState(0);
   const [WPM, setWPM] = useState(0);
   const [time, setTime] = useState(60);
+  const [currentWord, setCurrentWord] = useState("");
+  const [currentWordIndex, setCurrentWordIndex] = useState(0);
+  const [currentLetter, setCurrentLetter] = useState("");
+  const [currentLetterIndex, setCurrentLetterIndex] = useState(0);
+  const [userInput, setUserInput] = useState("");
+  const [words, setWords] = useState([""]);
+
+  const checkInput = (input: string) => {};
+
+  const handleInputChange = (input: string) => {
+    setUserInput(input);
+  };
 
   useEffect(() => {
-    //somtheing here for initialization
+    setWords(shuffleArray(WordBank));
   }, []);
+
+  useEffect(() => {
+    setCurrentWord(words[0]);
+    setCurrentWordIndex(0);
+    setCurrentLetter(words[0][0]);
+    setCurrentLetterIndex(0);
+    console.log(words[0], words[0][0]);
+  }, [words]);
+
+  useEffect(() => {
+    checkInput(userInput);
+  }, [userInput]);
 
   return (
     <Container>
@@ -25,11 +51,15 @@ function App() {
       </StatusBar>
 
       <TypeBoxContainer>
-        <TypeBox></TypeBox>
+        <TypeBox
+          words={words}
+          currentWordIndex={currentWordIndex}
+          currentLetterIndex={currentLetterIndex}
+        ></TypeBox>
       </TypeBoxContainer>
 
       <TypeBarContainer>
-        <TypeBar></TypeBar>
+        <TypeBar handleInputChange={handleInputChange}></TypeBar>
       </TypeBarContainer>
     </Container>
   );

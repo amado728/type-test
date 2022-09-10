@@ -1,30 +1,20 @@
 import React from "react";
-import WordBank from "../models/WordBank";
+import Word from "./Word";
 
-function TypeBox() {
-  const words = shuffle(WordBank);
+function TypeBox(props: any) {
+  const { words, currentWordIndex, currentLetterIndex } = props;
 
-  function shuffle(array: Array<string>) {
-    let currentIndex = array.length,
-      randomIndex;
+  //   getLetter = () => {
+  //     if (currentLetter)
+  //   }
 
-    // While there remain elements to shuffle.
-    while (currentIndex != 0) {
-      // Pick a remaining element.
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex--;
-
-      // And swap it with the current element.
-      [array[currentIndex], array[randomIndex]] = [
-        array[randomIndex],
-        array[currentIndex],
-      ];
-    }
-
-    return array;
-  }
-
-  return <div>{words.join(" ")}</div>;
+  return (
+    <div>
+      {words.map((word: string) => {
+        return <Word word={word} key={word} />;
+      })}
+    </div>
+  );
 }
 
 export default TypeBox;
