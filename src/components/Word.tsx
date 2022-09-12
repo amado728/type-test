@@ -23,4 +23,7 @@ export default function Word(props: any) {
 const WordWrapper = styled.div`
   margin: 20px;
   display: inline-block;
+  width: 16%;
+  height: 45px;
+  text-align: center;
 `;

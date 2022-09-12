@@ -1,12 +1,13 @@
 import React from "react";
 import Word from "./Word";
 import WordModel from "../models/WordModel";
+import styled from "styled-components";
 
 function TypeBox(props: any) {
-  const { words, currentWordIndex, currentLetterIndex } = props;
+  const { words, currentWordIndex, currentLetterIndex, yPosition } = props;
 
   return (
-    <div>
+    <PositionedDiv style={{ top: yPosition + "px" }}>
       {words.map((word: WordModel) => {
         return (
           <Word
@@ -17,8 +18,12 @@ function TypeBox(props: any) {
           />
         );
       })}
-    </div>
+    </PositionedDiv>
   );
 }
 
 export default TypeBox;
+
+const PositionedDiv = styled.div`
+  position: relative;
+`;
