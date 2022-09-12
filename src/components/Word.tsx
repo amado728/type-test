@@ -1,16 +1,20 @@
 import React from "react";
-import splitWord from "../operations/splitWord";
 import styled from "styled-components";
 import Letter from "./Letter";
+import LetterModel from "../models/LetterModel";
 
 export default function Word(props: any) {
-  const word = splitWord(props.word);
-  const { letterStatus } = props;
+  const { letters, isCurrent, isIncorrect } = props.word;
 
   return (
-    <WordWrapper>
-      {word.map((char, i) => {
-        return <Letter key={char + i} letter={char} status={0} />;
+    <WordWrapper
+      style={{
+        backgroundColor: isCurrent ? "green" : "",
+        color: isIncorrect ? "red" : "black",
+      }}
+    >
+      {letters.map((letter: LetterModel, i: number) => {
+        return <Letter key={letter.value + i} letter={letter} />;
       })}
     </WordWrapper>
   );

@@ -1,5 +1,5 @@
-export default function shuffleArray(array: Array<string>) {
-  let currentIndex = array.length,
+export default function shuffleArray(arr: Array<string>) {
+  let currentIndex = arr.length,
     randomIndex;
 
   // While there remain elements to shuffle.
@@ -9,11 +9,11 @@ export default function shuffleArray(array: Array<string>) {
     currentIndex--;
 
     // And swap it with the current element.
-    [array[currentIndex], array[randomIndex]] = [
-      array[randomIndex],
-      array[currentIndex],
+    [arr[currentIndex], arr[randomIndex]] = [
+      arr[randomIndex],
+      arr[currentIndex],
     ];
   }
 
-  return array;
+  return arr;
 }

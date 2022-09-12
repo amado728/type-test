@@ -1,28 +1,28 @@
 import React from "react";
-import splitWord from "../operations/splitWord";
 import styled from "styled-components";
 
 export default function Letter(props: any) {
-  const { letter, status } = props;
+  const { value, isCurrent, isIncorrect } = props.letter;
 
-  //letter status 0 = undetermined
-  //letter status 1 = incorrect
-  //letter status 2 = correct
-
-  if (status === 1) {
-    return <Incorrect>{letter}</Incorrect>;
-  }
-  if (status === 2) {
-    return <Correct>{letter}</Correct>;
+  if (isCurrent) {
+    return <CurrentLetter>{value}</CurrentLetter>;
   } else {
-    return <span>{letter}</span>;
+    if (isIncorrect) {
+      return <Incorrect>{value}</Incorrect>;
+    } else {
+      return <span>{value}</span>;
+    }
   }
 }
 
 const Correct = styled.span`
-  color: white;
+  color: green;
 `;
 
 const Incorrect = styled.span`
   color: red;
+`;
+
+const CurrentLetter = styled.span`
+  color: white;
 `;
